@@ -24,8 +24,8 @@ fn main() -> ! {
     
     // todo)) 假设电源开关连接于 PA15, 使能开关连接于 PB3, 板载指示灯连接于 PB4
     let mut pb4_led = pb4_released.into_push_pull_output(&mut gpiob.crl);
-    let mut pa15_power = pa15_released.into_pull_up_input(&mut gpioa.crh);
-    let mut pb3_enable = pb3_released.into_pull_up_input(&mut gpiob.crl);
+    let pa15_power = pa15_released.into_pull_up_input(&mut gpioa.crh);
+    let pb3_enable = pb3_released.into_pull_up_input(&mut gpiob.crl);
     
     loop {
         if pa15_power.is_high() && pb3_enable.is_high() {

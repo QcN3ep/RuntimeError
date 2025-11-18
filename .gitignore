@@ -2,3 +2,5 @@
 /source/xtask/target
 /source/Cargo.lock
 /source/xtask/Cargo.lock
+
+.idea

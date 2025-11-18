@@ -17,7 +17,7 @@ fn main() -> ! {
     // 获取 GPIO 通道句柄
     let mut gpioa = dp.GPIOA.split(&mut rcc);
     let mut gpiob = dp.GPIOB.split(&mut rcc);
-    let mut gpioc = dp.GPIOC.split(&mut rcc);
+    // let mut gpioc = dp.GPIOC.split(&mut rcc);
     // 关闭 JTAG 并获取释放引脚句柄
     let (pa15_released, pb3_released, pb4_released) =
         afio.mapr.disable_jtag(gpioa.pa15, gpiob.pb3, gpiob.pb4);

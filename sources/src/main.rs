@@ -17,15 +17,15 @@ fn main() -> ! {
     // 获取 GPIO 通道句柄
     let mut gpioa = dp.GPIOA.split(&mut rcc);
     let mut gpiob = dp.GPIOB.split(&mut rcc);
-    // let mut gpioc = dp.GPIOC.split(&mut rcc);
+    let mut gpioc = dp.GPIOC.split(&mut rcc);
     // 关闭 JTAG 并获取释放引脚句柄
     let (pa15_released, pb3_released, pb4_released) =
         afio.mapr.disable_jtag(gpioa.pa15, gpiob.pb3, gpiob.pb4);
     
     // todo)) 假设电源开关连接于 PA15, 使能开关连接于 PB3, 板载指示灯连接于 PB4
     let mut pb4_led = pb4_released.into_push_pull_output(&mut gpiob.crl);
-    let pa15_power = pa15_released.into_pull_up_input(&mut gpioa.crh);
-    let pb3_enable = pb3_released.into_pull_up_input(&mut gpiob.crl);
+    let mut pa15_power = pa15_released.into_pull_up_input(&mut gpioa.crh);
+    let mut pb3_enable = pb3_released.into_pull_up_input(&mut gpiob.crl);
     
     loop {
         if pa15_power.is_high() && pb3_enable.is_high() {

@@ -5,5 +5,3 @@ source/target/
 source/xtask/target/
 source/Cargo.lock
 source/xtask/Cargo.lock
-
-hardware_backup/

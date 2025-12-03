@@ -13,7 +13,7 @@ fn main() {
         "rust_project".to_string()
     });
 
-    let target_dir = Path::new("../target/thumbv7m-none-eabi/debug");
+    let target_dir = Path::new("../target/thumbv7em-none-eabi/debug");
     let elf_path = target_dir.join(&crate_name);
 
     let elf_file = elf_path.with_extension("elf");

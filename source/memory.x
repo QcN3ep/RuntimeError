@@ -1,8 +1,9 @@
 /* memory.x */
 MEMORY
 {
-  FLASH : ORIGIN = 0x08000000, LENGTH = 512K
-  RAM   : ORIGIN = 0x20000000, LENGTH = 64K
+  FLASH : ORIGIN = 0x08000000, LENGTH = 2048K
+  RAM   : ORIGIN = 0x20000000, LENGTH = 512K
 }
 
+/* Cortex-M Vector Table */
 _stack_start = ORIGIN(RAM) + LENGTH(RAM);

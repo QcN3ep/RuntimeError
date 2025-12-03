@@ -5,7 +5,7 @@ mod sensors;
 
 use cortex_m_rt::entry;
 use panic_halt as _;
-
+use log::info;
 use stm32h7xx_hal::{
     pac::{self}, prelude::*
 };
@@ -15,6 +15,7 @@ use sensors::ultrasonic::{Ultrasonic, UltrasonicArray};
 
 #[entry]
 fn main() -> ! {
+    info!("System initializing...");
     // 获取外设访问接口句柄
     let dp = pac::Peripherals::take().unwrap();
     let cp = cortex_m::Peripherals::take().unwrap();
@@ -29,6 +30,8 @@ fn main() -> ! {
     let mut gpiob = dp.GPIOB.split(ccdr.peripheral.GPIOB);
     let mut gpioc = dp.GPIOC.split(ccdr.peripheral.GPIOC);
     
+    info!("System initialized.");
+    info!("Configuring peripherals...");
     // 配置超声波传感器句柄
     let ultrasonic_front = Ultrasonic::new(
         gpiob.pb7.into_push_pull_output(),
@@ -67,9 +70,13 @@ fn main() -> ! {
         ccdr.peripheral.USART2, 
         &ccdr.clocks);
     let (mut bluetooth_tx, bluetooth_rx) = bluetooth.unwrap().split();
+    info!("Peripherals configured.");
     
+    info!("main loop starting...");
     // 主循环
     loop {
+        info!("Reading ultrasonic distances...");
+        
         writeln!(debugger_tx, "Front: {:?} cm, Left: {:?} cm, Right: {:?} cm", 
             ultrasonic.front.read_distance(), 
             ultrasonic.left.read_distance(), 
@@ -80,6 +87,8 @@ fn main() -> ! {
             ultrasonic.left.read_distance(), 
             ultrasonic.right.read_distance()
         ).unwrap();
+        
+        info!("Distances sent.");
 
         delay.delay_us(1000_u32);
     }

@@ -1,2 +1,3 @@
-# RuntimeError
-Just test
+# Runtime Error
+
+一套基于定位系统与超声波的自规划智能小车解决方案，用于实现自动巡航及少量货物的运载。

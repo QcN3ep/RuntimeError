@@ -71,7 +71,7 @@ fn main() -> ! {
         &ccdr.clocks);
     let (mut bluetooth_tx, bluetooth_rx) = bluetooth.unwrap().split();
     info!("Peripherals configured.");
-    
+
     info!("main loop starting...");
     // 主循环
     loop {

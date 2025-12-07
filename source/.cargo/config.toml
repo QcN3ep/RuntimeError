@@ -1,8 +1,8 @@
 [build]
-target = "thumbv7em-none-eabi"
+target = "thumbv7em-none-eabihf"
 
-[target.thumbv7em-none-eabi]
-runner = "probe-rs run --chip STM32F103ZE"
+[target.thumbv7em-none-eabihf]
+runner = "probe-rs run --chip STM32H743VI"
 
 rustflags = [
   "-C", "link-arg=-Tlink.x",

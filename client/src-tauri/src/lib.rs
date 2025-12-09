@@ -1,7 +1,7 @@
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
 fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+    format!("你好，{}！这里是来自 Rust 后端的问候！", name)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]

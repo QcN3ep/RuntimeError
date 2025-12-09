@@ -69,7 +69,7 @@ export default function Navbar({ onHeight }) {
           height: 80,
           '& .MuiBottomNavigationAction-root': {
             '& .MuiSvgIcon-root': {
-              fontSize: 32, // 👈 统一放大所有图标
+              fontSize: 32,
             }
           }
         }}

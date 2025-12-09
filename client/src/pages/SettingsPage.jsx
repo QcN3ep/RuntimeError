@@ -28,7 +28,7 @@ export default function SettingsPage() {
       <Paper 
         elevation={0}
         sx={{ 
-          p: 4, // 增加内部 padding
+          p: 4,
           borderRadius: 2,
           backgroundColor: theme.palette.background.paper,
         }}

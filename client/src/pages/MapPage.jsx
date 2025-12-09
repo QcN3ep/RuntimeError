@@ -14,7 +14,7 @@ export default function MapPage() {
         }}
       >
         <ConstructionIcon sx={{ fontSize: 60, mb: 2, color: 'grey.500' }} />
-        <Typography variant="h5" color="text.secondary">
+        <Typography variant='h5' color='text.secondary'>
           Working In Progress
         </Typography>
       </Box>

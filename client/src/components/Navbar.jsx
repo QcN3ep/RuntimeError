@@ -1,12 +1,11 @@
-// Navbar.jsx
-import * as React from "react";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import HomeIcon from "@mui/icons-material/Home";
-import MapIcon from "@mui/icons-material/Public";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { useNavigate, useLocation } from "react-router-dom";
-import Box from "@mui/material/Box";
+import * as React from 'react';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import HomeIcon from '@mui/icons-material/Home';
+import MapIcon from '@mui/icons-material/Public';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Box from '@mui/material/Box';
 
 export default function Navbar({ onHeight }) {
   const navigate = useNavigate();
@@ -14,17 +13,17 @@ export default function Navbar({ onHeight }) {
   const ref = React.useRef();
 
   React.useEffect(() => {
-    if (ref.current && typeof onHeight === "function") {
+    if (ref.current && typeof onHeight === 'function') {
       onHeight(ref.current.offsetHeight);
     }
   }, [onHeight]);
 
   const getCurrentValue = () => {
     const path = location.pathname;
-    if (path === "/") return "home";
-    if (path === "/map") return "map";
-    if (path === "/settings") return "settings";
-    return "home";
+    if (path === '/') return 'home';
+    if (path === '/map') return 'map';
+    if (path === '/settings') return 'settings';
+    return 'home';
   };
 
   const [value, setValue] = React.useState(getCurrentValue());
@@ -37,17 +36,17 @@ export default function Navbar({ onHeight }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
     switch (newValue) {
-      case "home":
-        navigate("/");
+      case 'home':
+        navigate('/');
         break;
-      case "map":
-        navigate("/map");
+      case 'map':
+        navigate('/map');
         break;
-      case "settings":
-        navigate("/settings");
+      case 'settings':
+        navigate('/settings');
         break;
       default:
-        navigate("/");
+        navigate('/');
     }
   };
 
@@ -55,7 +54,7 @@ export default function Navbar({ onHeight }) {
     <Box
       ref={ref}
       sx={{
-        position: "fixed",
+        position: 'fixed',
         bottom: 0,
         left: 0,
         right: 0,
@@ -67,12 +66,17 @@ export default function Navbar({ onHeight }) {
         onChange={handleChange}
         showLabels
         sx={{
-          height: 56,
+          height: 80,
+          '& .MuiBottomNavigationAction-root': {
+            '& .MuiSvgIcon-root': {
+              fontSize: 32, // 👈 统一放大所有图标
+            }
+          }
         }}
       >
-        <BottomNavigationAction label="主页" value="home" icon={<HomeIcon />} />
-        <BottomNavigationAction label="地图" value="map" icon={<MapIcon />} />
-        <BottomNavigationAction label="设置" value="settings" icon={<SettingsIcon />} />
+        <BottomNavigationAction label='主页' value='home' icon={<HomeIcon />} />
+        <BottomNavigationAction label='地图' value='map' icon={<MapIcon />} />
+        <BottomNavigationAction label='设置' value='settings' icon={<SettingsIcon />} />
       </BottomNavigation>
     </Box>
   );

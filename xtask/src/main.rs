@@ -13,13 +13,13 @@ fn main() {
         "debug"
     };
     // 获取主 crate 名称
-    let manifest_path = Path::new("../Cargo.toml");
+    let manifest_path = Path::new("../firmware/Cargo.toml");
     let crate_name = get_crate_name(manifest_path).unwrap_or_else(|| {
         eprintln!("⚠️ 解析 Cargo.toml 时失败");
         "rust_project".to_string()
     });
 
-    let target_dir = std::path::PathBuf::from("../target/thumbv7em-none-eabihf/")
+    let target_dir = std::path::PathBuf::from("../firmware/target/thumbv7em-none-eabihf/")
         .join(&build_type);
     let elf_path = target_dir.join(&crate_name);
 

@@ -1,5 +1,5 @@
 [package]
-name = "RuntimeError"
+name = "master-firmware"
 version = "0.1.0"
 edition = "2024"
 
@@ -10,8 +10,8 @@ embedded-hal = "0.2.7"
 log = "0.4.29"
 panic-halt = "1.0.0"
 
-stm32h7xx-hal = { version = "0.16", features = [
-    "stm32h743",
+stm32h7xx-hal = { version = "0.16.0", features = [
+    "stm32h743v",
     "rt",
     "usb_hs",
     "ethernet",

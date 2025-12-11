@@ -6,6 +6,12 @@ use std::{
 };
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
+    let build_type = if args.len() > 1 && args[1] == "release" {
+        "release"
+    } else {
+        "debug"
+    };
     // 获取主 crate 名称
     let manifest_path = Path::new("../Cargo.toml");
     let crate_name = get_crate_name(manifest_path).unwrap_or_else(|| {
@@ -13,14 +19,15 @@ fn main() {
         "rust_project".to_string()
     });
 
-    let target_dir = Path::new("../target/thumbv7em-none-eabi/debug");
+    let target_dir = std::path::PathBuf::from("../target/thumbv7em-none-eabihf/")
+        .join(&build_type);
     let elf_path = target_dir.join(&crate_name);
 
     let elf_file = elf_path.with_extension("elf");
     if elf_file.exists() {
         fs::remove_file(&elf_file).ok();
     }
-    let built_file = elf_path.with_extension(""); // 原始 target 文件名
+        let built_file = elf_path.with_extension(""); // 原始 target 文件名
     if !built_file.exists() {
         eprintln!("❌ 构建完成后未找到 ELF 文件: {:?}", built_file);
         exit(1);
@@ -38,9 +45,8 @@ fn main() {
     println!("{}", stdout);
 
     // 输出占用率
-    // STM32F103ZET6: Flash 512KB, RAM 64KB
-    const FLASH_TOTAL: f64 = 512.0 * 1024.0;
-    const RAM_TOTAL: f64 = 64.0 * 1024.0;
+    const FLASH_TOTAL: f64 = 2048.0 * 1024.0;
+    const RAM_TOTAL: f64 = 128.0 * 1024.0;
 
     if let Some(line) = stdout.lines().nth(1) {
         let cols: Vec<&str> = line.split_whitespace().collect();

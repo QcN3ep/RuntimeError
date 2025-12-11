@@ -7,7 +7,7 @@ use cortex_m_rt::entry;
 use panic_halt as _;
 use log::info;
 use stm32h7xx_hal::{
-    pac::{self}, prelude::*
+    pac, prelude::*
 };
 use core::fmt::Write;
 

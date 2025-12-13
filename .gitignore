@@ -1,8 +1,10 @@
-.vscode/
+/.vscode/
 .idea/
 
-source/target/
-source/xtask/target/
-source/Cargo.lock
-source/xtask/Cargo.lock
+target/
+Cargo.lock
 hardware/Hardware_backup/
+/vision/build
+/vision/debug.log
+
+build/
